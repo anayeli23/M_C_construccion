@@ -1,3 +1,5 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'].'/etc/config.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +11,6 @@
     <h1>CLAVE EQUIVOCADA, VUELVA A INGRESAR</h1>
     <br>
     <br>
-    <a href="http://mc_construccion.test">Volver al Login</a>
+    <a href="<?php echo get_urlBase('index.php') ?>">Volver al Login</a>
 </body>
 </html>

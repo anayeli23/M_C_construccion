@@ -1,15 +1,23 @@
+<?php 
+        require_once $_SERVER['DOCUMENT_ROOT'].'/etc/config.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].'/models/connect/conexion.php';
+
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Inicio de Sesión</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="<?php echo get_urlBase('styles.css') ?>">
 </head>
-<body style="background: url('fondo.png') no-repeat center center fixed">
-<?php
-// Start the session
-session_start();
+
+<body style="background: url('img/fondo.png') no-repeat center center fixed">
+	
+    <?php
+	//Start the session
+        session_start();
 
 	if ( $_SERVER["REQUEST_METHOD"] == "POST") {
 		$v_username="";
@@ -25,14 +33,20 @@ session_start();
 		if(($v_username == "admin") && ($v_password == "1234") ){
 			$_SESSION["txtusername"] = $v_username;
 			$_SESSION["txtpassword"] = $v_password;
-			header("Location: http://mc_construccion.test/dashboard.php");
+			header('Location: '.get_views('dashboard.php'));
+			//echo "dashboard";
 		}else {
-			header("Location: http://mc_construccion.test/claveequivocada.php");
+			header('Location: '.get_views('claveequivocada.php'));
+			// echo "error clave equivocada";
 		}
 
 	}
+
+	if (isset($_SESSION["txtusername"])) {
+		header('Location: '.get_views('dashboard.php'));
+	}
 ?>
-<div class="container" style="background: url('imgLogin.png') no-repeat center center fixed">
+<div class="container" style="background: url('img/imgLogin.png') no-repeat center center fixed">
 	<div class="cloud-title">
 		<div class="cloud-title-small"></div>
 		<div class="cloud-title-small right"></div>
