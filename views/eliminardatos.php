@@ -9,7 +9,7 @@ if (!isset($_SESSION["txtusername"])) {
 require_once $_SERVER['DOCUMENT_ROOT'] . '/etc/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/connect/conexion.php';
 
-$conexion = new conexion($host, $namedb, $userdb, $passwordb);
+$conexion = new conexion();
 $pdo = $conexion->obtenerConexion();
 
 if (!isset($_SESSION["txtusername"])) {
@@ -22,12 +22,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/models/connect/conexion.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tmpdatusuarios = $_POST["datusuario"];
 
-    $conexion = new conexion($host, $namedb, $userdb, $passwordb);
+    $conexion = new conexion();
     $pdo = $conexion->obtenerConexion();
     try {
         $sentencia = $pdo->prepare("delete from usuarios where username=?;");
         $sentencia->execute([$tmpdatusuarios]);
-        echo "eliminado con EXITO <br>";
+        echo "eliminado con EXITO  <br>";
     } catch (PDOException $e) {
         echo "ERROR AL ELIMINAR <br>";
         echo $e->getMessage();

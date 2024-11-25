@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION["txtusername"])) {
-    header('Location:' . get_urlBase('index.php'));
+    header('Location: ' . get_urlBase('index.php'));
 }
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/etc/config.php';

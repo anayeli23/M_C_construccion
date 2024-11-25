@@ -12,14 +12,14 @@ if (!isset($_SESSION["txtusername"])) {
 require_once $_SERVER['DOCUMENT_ROOT'] . '/etc/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/connect/conexion.php';
 
-$conexion = new conexion($host, $namedb, $userdb, $passwordb);
+$conexion = new conexion();
 $pdo = $conexion->obtenerConexion();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tmpdatusuario = $_POST["datusuario"];
 
 
-    $conexion = new conexion($host, $namedb, $userdb, $passwordb);
+    $conexion = new conexion();
     $pdo = $conexion->obtenerConexion();
 
 
@@ -29,14 +29,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sentencia = $pdo->prepare("update usuarios set username=?, password=?, perfil=? where id=?;");
             $sentencia->execute([$_POST["datusuario"], $_POST["datpassword"], $_POST["datperfil"], $_POST["custId"]]);
             echo $tmpdatusuario . "  modificacion con exito <br>";
+            exit();
         } catch (PDOException $e) {
             echo "hubo un error no se pudo modificar...<br>";
             echo $e->getMessage();
+            exit();
         }
     } else {
         $query = $pdo->query("select id,username,password,perfil from usuarios where username='" . $tmpdatusuario . "'");
+        //$query->execute([$tmpdatusuario]);
         $fila  = $query->fetch(PDO::FETCH_ASSOC);
-?>
+
+        if ($fila) {
+            // Mostrar el formulario para modificar el usuario
+            ?>
         <form action="" method="POST">
             <input type="hidden" id="custId" name="custId" value="<?php echo $fila['id'] ?>">
 
@@ -52,10 +58,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit">Modificar usuario</button>
         </form>
 <?php
+    }else {
+        echo "No se encontró un usuario con ese nombre.<br>";
     }
     exit();
 }
 
+}
 ?>
 
 <form action="" method="POST">
