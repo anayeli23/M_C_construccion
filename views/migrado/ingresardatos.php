@@ -1,6 +1,4 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/etc/config.php';
-// require_once $_SERVER['DOCUMENT_ROOT']. '/models/conexion.php';
 
 session_start();
 
@@ -17,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tmpdatpassword = $_POST["datpassword"];
     $tmpdatperfil = $_POST["datperfil"];
 
-    $conexion = new conexion(); //($host, $namedb, $userdb, $paswordb);
+    $conexion = new conexion();
     $pdo = $conexion->obtenerConexion();
 
     try {
@@ -33,21 +31,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-<head>
-    <link rel="stylesheet" href="<?php echo get_UrlBase('./css/estilodashboard.css') ?>">
-</head>
-
 <form action="" method="POST">
-    <h1 style="text-align: center;">Ingresa un Usuario</h1>
-
-    <label for="datusuario">Usuario</label>
+    <br>
+    <label for="datusuario"> Usuario </label>
     <input type="text" name="datusuario" id="datusuario">
-
-    <label for="datpasword">Password</label>
+    <br>
+    <br>
+    <label for="datpasword"> password </label>
     <input type="password" name="datpassword" id="datpassword">
-
-    <label for="datperfil">Perfil</label>
+    <br>
+    <br>
+    <label for="datperfil"> perfil </label>
     <input type="datperfil" name="datperfil" id="datperfil">
-
-    <button type="submit">Registrar</button>
+    <br>
+    <br>
+    <button type="submit"> registrar usuario </button>
 </form>

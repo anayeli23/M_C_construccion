@@ -1,10 +1,11 @@
 <?php
-function mostrarusuarios($usuarios)
+function mostrarUsuarios($usuarios)
 {
-
 ?>
 
-    <h2>LISTA DE USUARIOS DEL SISTEMA</h2>
+
+
+    <h2>LISTA DE USUARIOS DEL SISTEMA v2</h2>
     <br>
     <table border="1">
         <tr>
@@ -12,20 +13,27 @@ function mostrarusuarios($usuarios)
             <th> username </th>
             <th> password </th>
             <th> perfil </th>
+            <th> eliminar </th>
+            <th> editar </th>
         </tr>
         <?php
-        foreach ($usuarios as $usuarios) {
+        foreach ($usuarios as $usuario) {
+        ?>
+            <tr>
+                <td> <?php echo $usuario['id'] ?> </td>
+                <td> <?php echo $usuario['username'] ?> </td>
+                <td> <?php echo $usuario['password'] ?> </td>
+                <td> <?php echo $usuario['perfil'] ?> </td>
+                <td> <a href="#"> eliminar </td>
+                <td> <a href="#"> editar </td>
+            </tr>
+        <?php
         }
         ?>
-        <tr>
-            <td> <?php echo $usuarios['id'] ?> </td>
-            <td> <?php echo $usuarios['username'] ?> </td>
-            <td> <?php echo $usuarios['password'] ?> </td>
-            <td> <?php echo $usuarios['perfil'] ?> </td>
-        </tr>
-
     </table>
+
 <?php
 }
 
+//mostrarUsuarios(null);
 ?>

@@ -4,7 +4,6 @@ session_start();
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/modelousuario.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/views/vistaeliminarusuario.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/views/vistanotificacion.php';
 
 if (!isset($_SESSION["txtusername"])) {
     header('Location: ' . get_UrlBase('index.php'));

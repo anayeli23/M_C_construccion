@@ -1,50 +1,42 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/etc/config.php';
-// require_once $_SERVER['DOCUMENT_ROOT']. '/models/conexion.php';
 
 session_start();
 
-
-if (!isset($_SESSION["txtusername"])) {
-    header('Location: ' . get_UrlBase('index.php'));
+if (!isset( $_SESSION["txtusername"])) {
+    header('location: '.get_urlBase('index.php'));
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/etc/config.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/models/connect/conexion.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/etc/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/models/connect/conexion.php';
 
-//$conexion = new conexion($host, $namedb, $userdb, $paswordb);
 $conexion = new conexion();
-//el metodo constructor de la clase conexion no tiene parametros por ender no deberia pasar parametros al llamar a esta clase
+//$conexion->conectar(); se puso en el constructor
 
-$pdo = $conexion->obtenerConexion();
+$pdo = $conexion->obtenerconexion();
 
-$query = $pdo->query("select id,username,password,perfil from usuarios");
+$query = $pdo->query("select id, username, password, perfil from usuarios");
+
 ?>
-<!DOCTYPE html>
-<html>
-
-<body>
-<h2 class="titulo-tabla">Lista de Usuarios del Sistema</h2>
-    <table class="user-table">
-        <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Password</th>
-            <th>Perfil</th>
-        </tr>
-        <?php
-        while ($fila = $query->fetch(PDO::FETCH_ASSOC)) {
-        ?>
-            <tr>
-                <td><?php echo htmlspecialchars($fila['id']); ?></td>
-                <td><?php echo htmlspecialchars($fila['username']); ?></td>
-                <td><?php echo htmlspecialchars($fila['password']); ?></td>
-                <td><?php echo htmlspecialchars($fila['perfil']); ?></td>
-            </tr>
-        <?php
-        }
-        ?>
-    </table>
-</body>
-
-</html>
+<h2>LISTA DE USUARIOS DEL SISTEMA</h2>
+<br>
+<table border="1">
+    <tr>
+        <th> id </th>
+        <th> username </th>
+        <th> password </th>
+        <th> perfil </th>
+    </tr>
+    <?php
+    while ($fila = $query->fetch(PDO::FETCH_ASSOC))
+    {
+    ?>
+    <tr>
+        <td> <?php echo $fila['id'] ?> </td>
+        <td> <?php echo $fila['username'] ?> </td>
+        <td> <?php echo $fila['password'] ?> </td>
+        <td> <?php echo $fila['perfil'] ?> </td>
+    </tr>
+    <?php
+    }
+    ?>
+</table>
