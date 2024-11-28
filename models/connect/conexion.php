@@ -1,6 +1,10 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/etc/config.php';
+<<<<<<< HEAD
+=======
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/connect/conexion.php';
+>>>>>>> 79ea0e95ed843fd4c878f7f5140bb1c1dff5afa3
 class Conexion
 {
     private $host;
@@ -12,6 +16,11 @@ class Conexion
 
     public function __construct()
     {
+<<<<<<< HEAD
+=======
+        if (!defined('DB_HOST') || !defined('DB_NAME') || !defined('DB_USER') || !defined('DB_PASSWORD')) {
+            die('Error: Las constantes de configuración de la base de datos no están definidas.');}
+>>>>>>> 79ea0e95ed843fd4c878f7f5140bb1c1dff5afa3
         $this->host = DB_HOST;
         $this->namedb = DB_NAME;
         $this->userdb = DB_USER;
@@ -50,6 +59,7 @@ class Conexion
         return $dsn;
     }
 }
+<<<<<<< HEAD
 
 
     /*try {
@@ -60,3 +70,5 @@ class Conexion
     } 
         */ 
 ?>
+=======
+>>>>>>> 79ea0e95ed843fd4c878f7f5140bb1c1dff5afa3

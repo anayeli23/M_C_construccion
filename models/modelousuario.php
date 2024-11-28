@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/connect/conexion.php';
 
@@ -82,5 +83,37 @@ class modelousuario
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
+=======
+require_once $_SERVER['DOCUMENT_ROOT'] . '/models/connect/conexion.php';
+echo "Entro al ModeloUsuario";
+class modeloUsuario
+{
+
+    private $conexion;
+
+    public function __construct()
+    {
+        $this->conexion = Conexion::obtenerConexion();
+    }
+
+    public function obtenerUsuario()
+    {
+        $query = $this->conexion->query('select id,username,password,perfil from usuarios');
+
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function insertarInsertar($username, $password, $perfil)
+    {
+
+        $query = $this->conexion->query('insert into usuarios(username,password,perfil) values (:username, :password, :perfil)');
+        $stmt = $this->conexion->prepare($query);
+
+        $stmt->bindParam('username', $username);
+        $stmt->bindParam('password', $password);
+        $stmt->bindParam('perfil', $perfil);
+
+        return $stmt->execute();
+>>>>>>> 79ea0e95ed843fd4c878f7f5140bb1c1dff5afa3
     }
 }
