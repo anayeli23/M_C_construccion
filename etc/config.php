@@ -15,8 +15,8 @@ function get_path($type, $arg1)
         'views' => URL_BASE . 'views/',
         'controllers' => URL_BASE . 'controllers/',
         'models' => URL_BASE . 'models/',
-        //'img' => URL_BASE . 'img/',
-        //'css' => URL_BASE . 'css/',
+        'img' => URL_BASE . 'img/',
+        'css' => URL_BASE . 'css/'
     ];
     return $basePaths[$type] . $arg1;
 }
@@ -41,18 +41,20 @@ function get_controllers($arg1)
     return get_path('controllers', $arg1);
 }
 
-//function get_img($arg1)
-//{
-   // return get_path('img', $arg1);
-//}
+function get_img($arg1)
+{
+    return get_path('img', $arg1);
+}
 
-//function get_css($arg1)
-//{
-  //  return get_path('css', $arg1);
-//}
+function get_css($arg1)
+{
+    return get_path('css', $arg1);
+}
 
-
+//echo 'algo';
 //echo get_UrlBase('');
 //echo get_models('modeloUsuario.php');
-//echo 'algo';
-//echo URL_BASE;
+//echo 
+//echo urlBase;
+//echo "<br>";
+//echo get_UrlBase('pagina.html');

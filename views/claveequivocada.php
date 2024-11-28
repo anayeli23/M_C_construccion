@@ -16,4 +16,4 @@
     <a href="<?php echo get_urlBase('index.php') ?>">Volver al Login</a>
 </body>
 
-</html>
+</html> 
