@@ -5,7 +5,7 @@ function mostrarUsuarios($usuarios)
 
 
 
-    <h2>LISTA DE USUARIOS DEL SISTEMA v2</h2>
+    <h2>LISTA DE USUARIOS DEL SISTEMA </h2>
     <br>
     <table border="1">
         <tr>

@@ -73,4 +73,17 @@ class modeloUsuario
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function ValidarUsuario($username,$password)
+    {
+        $query = "select id, perfil from usuarios where username = :username and password = :password";
+        
+        $stmt = $this->conexion->prepare($query);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':password', $password);  //mejora pendiente utilizar algun algoritmo de encriptacion
+
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
+?>

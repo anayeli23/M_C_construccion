@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/modelousuario.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/views/vistaeliminarusuario.php';
@@ -10,24 +12,19 @@ if (!isset($_SESSION["txtusername"])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $tmpdatusuario = $_POST["datusuario"] ?? '';
+    $tmpdatusuario = $_POST["datusuario"];
 
-    if (!empty($tmpdatusuario)) {
-        $modelousuario = new modelousuario();
+    $mensaje = '';
+    if ($tmpdatusuario) {
+        $modeloUsuario = new modeloUsuario();
         try {
-            // Eliminar usuario por nombre
-            $modelousuario->eliminarusuariopornombre($tmpdatusuario);
-
-            // Notificación flotante
-            $mensaje = "Usuario eliminado con éxito.";
+            $modeloUsuario->eliminarusuarioPorNombre($tmpdatusuario);
+            $mensaje = "USUARIO ELIMINADO CON EXITO <br>";
         } catch (PDOException $e) {
-            $mensaje = "Hubo un error al eliminar el usuario: " . $e->getMessage();
+            $mensaje = "Error al registrar el usuario ...<br>" . $e->getMessage();
         }
-    } else {
-        $mensaje = "Por favor, ingrese un nombre de usuario válido.";
     }
-
-    mostrarformularioeliminar($mensaje);
+    mostrarFormularioEliminar($mensaje);
 } else {
-    mostrarformularioeliminar();
+    mostrarFormularioEliminar();
 }

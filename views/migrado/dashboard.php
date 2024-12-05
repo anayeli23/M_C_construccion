@@ -7,7 +7,7 @@ if (!isset( $_SESSION["txtusername"])) {
 }
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/etc/config.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/models/connect/conexion.php';
+//require_once $_SERVER['DOCUMENT_ROOT'].'/models/connect/conexion.php';
 
 ?>
 
@@ -17,7 +17,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/models/connect/conexion.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="<?php echo get_urlBase('../css/styledashboard.css') ?> ">
+    <link rel="stylesheet" href="<?php echo get_urlBase('/css/estilodashboard.css') ?> ">
 </head>
 <body>
     <div class="menu">
@@ -45,13 +45,13 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/models/connect/conexion.php';
                     echo "<iframe src='".get_controllers("controladorUsuario.php")."' ></iframe>";
                     break; 
                 case 'ingresar' :
-                    echo "<iframe src='".get_controllers("controladorIngresarUsuario.php")."' ></iframe>";
+                    echo "<iframe src='".get_controllers("controladoringresarusuario.php")."' ></iframe>";
                     break; 
                 case 'modificar' :
-                    echo "<iframe src='".get_controllers("controladorActualizarUsuario.php")."' ></iframe>";
+                    echo "<iframe src='".get_controllers("controladoractualizarusuario.php")."' ></iframe>";
                     break;
                 case 'eliminar' :
-                    echo "<iframe src='".get_controllers("controladorEliminarUsuario.php")."' ></iframe>";
+                    echo "<iframe src='".get_controllers("controladoreliminarusuario.php")."' ></iframe>";
                     break; 
             }
         }

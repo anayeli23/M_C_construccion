@@ -21,7 +21,7 @@ function mostrarFormularioBusqueda($mensaje = '')
 function mostrarFormularioEdicion($usuario,$mensaje = '')
 {
 ?>
-    <form action="/controllers/controladorActualizarUsuario.php" method="POST">
+    <form action="/controllers/controladoractualizarusuario.php" method="POST">
 
         <input type="hidden" name="custId" id="custId" value=" <?php echo $usuario['id'] ?>">
         <br>

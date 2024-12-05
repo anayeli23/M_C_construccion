@@ -12,7 +12,7 @@ if (!isset($_SESSION["txtusername"])) {
 require_once $_SERVER['DOCUMENT_ROOT'] . '/etc/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/models/connect/conexion.php';
 
-$conexion = new conexion();
+$conexion = new conexion($host, $namedb, $userdb, $paswordb);
 $pdo = $conexion->obtenerConexion();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
